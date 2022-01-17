@@ -15,7 +15,7 @@ pipeline {
         }
         stage ("Publish to Docker Hub") {
             steps {
-                withDockerRegistry(credentialsId: "dockerhub", url: "") {
+                withDockerRegistry(credentialsId: 'docker-hub', url:"") {
                     sh 'docker push tken02/jenkins-docker:latest'
                 }
             }
