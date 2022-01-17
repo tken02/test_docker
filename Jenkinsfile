@@ -9,7 +9,7 @@ pipeline {
 		}
         stage ("Build Docker Image and Tag") {
             steps {
-		bat "docker build --t jenkins-docker:latest ."
+		bat "docker build -t jenkins-docker:latest ."
 		bat "docker tag jenkins-docker:latest tken02/jenkins-docker:latest"
             }
         }
