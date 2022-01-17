@@ -9,8 +9,8 @@ pipeline {
 		}
         stage ("Build Docker Image and Tag") {
             steps {
-		sh "docker build --tag test:latest ."
-                sh "docker tag test:latest tken02/jenkins-docker:latest"
+		bat "docker build --tag test:latest ."
+                bat "docker tag test:latest tken02/jenkins-docker:latest"
             }
         }
         stage ("Publish to Docker Hub") {
@@ -24,7 +24,7 @@ pipeline {
 
     post {
 		always {
-			sh 'docker logout'
+			bat 'docker logout'
 		}
 	}
 
