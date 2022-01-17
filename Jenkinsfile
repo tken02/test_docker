@@ -1,5 +1,9 @@
 pipeline {
     agent any
+<<<<<<< HEAD
+=======
+
+>>>>>>> db6808a6b74911542a708e34af19cb003f3a13f1
     stages {
         stage('gitclone') {
 
@@ -26,4 +30,8 @@ pipeline {
 			sh 'docker logout'
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> db6808a6b74911542a708e34af19cb003f3a13f1
