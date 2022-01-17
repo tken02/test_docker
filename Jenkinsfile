@@ -6,37 +6,22 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('docker hub')
 	}
 
-	stages {
-	    
+	stages { 
 	    stage('gitclone') {
 
 			steps {
-				git 'https://github.com/shazforiot/nodeapp_test.git'
+				git branch: 'main', url: 'https://github.com/tken02/test_docker.git'
 			}
 		}
-
 		stage('Build') {
-
 			steps {
-				sh 'docker build -t hungle11/jenkins-docker:latest .'
-			}
-		}
-
-		stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push hungle11/jenkins-docker:latest'
+				withDockerRegistry(credentialsId: 'docker-hub', url:"") {
+                    sh 'docker build -t hungle11/jenkins-docker:latest .'
+					sh 'docker push hungle11/jenkins-docker:latest'
+                }	
 			}
 		}
 	}
-
 	post {
 		always {
 			sh 'docker logout'
