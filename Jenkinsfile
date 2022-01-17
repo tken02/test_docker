@@ -18,11 +18,13 @@ pipeline {
                     bat 'docker push tken02/jenkins-docker:latest'
             }
         }
+        }
     }
+
     post {
 		always {
 			sh 'docker logout'
 		}
 	}
-    }
+
 }
